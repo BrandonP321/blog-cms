@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import CreatorToolBox from '../../components/PostCreationComponents/CreatorToolBox'
 import BlogPostTitle from '../../components/PostCreationComponents/BlogPostTitle'
 import BlogPostImage from '../../components/PostCreationComponents/BlogPostImage'
+import BlogPostSection from '../../components/PostCreationComponents/BlogPostSection'
 import './index.css'
 
 export default function PostCreator() {
@@ -27,9 +28,11 @@ export default function PostCreator() {
         // add object to state with properties for a section with a heading and text
         const sectionObj = {
             sectionType: 'subSection',
-            heading: '',
-            text: ''
+            heading: 'Heading',
+            text: 'This is the body text for this section'
         }
+
+        setComponents([...componentsRef.current, sectionObj])
     }
 
     const addImage = () => {
@@ -92,7 +95,13 @@ export default function PostCreator() {
                                 handleSectionMove={handleSectionMove}
                                 />
                         case 'subSection':
-                            break;
+                            return <BlogPostSection
+                                heading={section.heading}
+                                text={section.text}
+                                index={index}
+                                handleTextInputChange={handleTextInputChange}
+                                handleSectionMove={handleSectionMove}
+                            />
                         case 'image':
                             return <BlogPostImage
                                 url={section.url}
@@ -103,6 +112,7 @@ export default function PostCreator() {
                     }
                 })}
             </div>
+            <button onClick={() => console.log(componentsRef.current)} >comps</button>
         </div>
     )
 }
