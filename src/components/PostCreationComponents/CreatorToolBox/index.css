@@ -1,0 +1,40 @@
+.post-creator-tools {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    border: 1px solid #727272;
+    border-radius: 5px;
+}
+
+.tools {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tools button {
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: none;
+    border-top: 1px solid #727272;
+    transition: all .2s;
+}
+
+.tools button:hover {
+    background-color: #cccccc;
+}
+
+.tools .bottom-button {
+    border-radius: 0px 0px 5px 5px;
+}
+
+.tools-header p {
+    margin: 0;
+    text-align: center;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    background-color: #007bff;
+    color: white;
+    cursor: grab;
+}
