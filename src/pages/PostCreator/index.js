@@ -24,7 +24,12 @@ export default function PostCreator() {
     }, [])
 
     const addSection = () => {
-
+        // add object to state with properties for a section with a heading and text
+        const sectionObj = {
+            sectionType: 'subSection',
+            heading: '',
+            text: ''
+        }
     }
 
     const addImage = () => {
@@ -51,6 +56,24 @@ export default function PostCreator() {
         setComponents(newSections)
     }
 
+    const handleTextInputChange = (event) => {
+        // get value and name of input field and index of section in state
+        const name = event.target.getAttribute('data-name')
+        const text = event.target.innerText
+        const index = event.target.getAttribute('data-index')
+        
+        // create new array to with updated value of input field
+        const updatedArr = [...componentsRef.current]
+        updatedArr[index][name] = text
+
+        // only update ref since value doesn't change rendered components
+        componentsRef.current = updatedArr
+    }
+
+    const handleImageChange = (event) => {
+
+    }
+
     return (
         <div>
             <CreatorToolBox
@@ -65,9 +88,9 @@ export default function PostCreator() {
                                 title={section.title}
                                 subtitle={section.subtitle}
                                 index={index}
+                                handleTextInputChange={handleTextInputChange}
                                 handleSectionMove={handleSectionMove}
                                 />
-                            break;
                         case 'subSection':
                             break;
                         case 'image':
@@ -77,7 +100,6 @@ export default function PostCreator() {
                                 index={index}
                                 handleSectionMove={handleSectionMove}
                             />
-                            break;
                     }
                 })}
             </div>
