@@ -1,11 +1,15 @@
 import React from 'react'
-import SectionOrderArrows from '../SectionOrderArrows'
+import SectionOptions from '../SectionOptions'
 import './index.css'
 
 export default function BlogPostTitle(props) {
     return (
         <div className='post-creator-section'>
-            <SectionOrderArrows index={props.index} handleSectionMove={props.handleSectionMove} />
+            <SectionOptions 
+               index={props.index} 
+               handleSectionMove={props.handleSectionMove} 
+               handleSectionDelete={props.handleSectionDelete}
+            />
             <h1 
                 className='post-title' 
                 onBlur={props.handleTextInputChange}

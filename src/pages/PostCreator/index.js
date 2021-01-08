@@ -59,6 +59,15 @@ export default function PostCreator() {
         setComponents(newSections)
     }
 
+    const handleSectionDelete = index => {
+        // make copy of current state and remove section
+        const newSections = [...componentsRef.current]
+        newSections.splice(index, 1)
+
+        // update hooks with new array
+        setComponents(newSections)
+    }
+
     const handleTextInputChange = (event) => {
         // get value and name of input field and index of section in state
         const name = event.target.getAttribute('data-name')
@@ -93,6 +102,7 @@ export default function PostCreator() {
                                 index={index}
                                 handleTextInputChange={handleTextInputChange}
                                 handleSectionMove={handleSectionMove}
+                                handleSectionDelete={handleSectionDelete}
                                 />
                         case 'subSection':
                             return <BlogPostSection
@@ -101,6 +111,7 @@ export default function PostCreator() {
                                 index={index}
                                 handleTextInputChange={handleTextInputChange}
                                 handleSectionMove={handleSectionMove}
+                                handleSectionDelete={handleSectionDelete}
                             />
                         case 'image':
                             return <BlogPostImage
@@ -108,11 +119,11 @@ export default function PostCreator() {
                                 alt={section.alt}
                                 index={index}
                                 handleSectionMove={handleSectionMove}
+                                handleSectionDelete={handleSectionDelete}
                             />
                     }
                 })}
             </div>
-            <button onClick={() => console.log(componentsRef.current)} >comps</button>
         </div>
     )
 }
