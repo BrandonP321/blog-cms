@@ -18,8 +18,11 @@ function App() {
           {/* <Route exact path='/dashboard/:user'>
 
           </Route> */}
-          <Route exact path='/dashboard/create'>
-            <PostCreator />
+          <Route exact path='/user/:userId/post/create'>
+            <PostCreator isNewPost={true} />
+          </Route>
+          <Route exact path='/user/:userId/post/update/:postId'>
+            <PostCreator isNewPost={false} />
           </Route>
           <Route exact path='/post/:id'>
             <BlogPost />

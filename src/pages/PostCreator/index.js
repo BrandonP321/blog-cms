@@ -1,11 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import API from '../../utils/API'
 import CreatorToolBox from '../../components/PostCreationComponents/CreatorToolBox'
 import BlogPostTitle from '../../components/PostCreationComponents/BlogPostTitle'
 import BlogPostImage from '../../components/PostCreationComponents/BlogPostImage'
 import BlogPostSection from '../../components/PostCreationComponents/BlogPostSection'
 import './index.css'
 
-export default function PostCreator() {
+export default function PostCreator(props) {
+    const { userId, postId } = useParams();
+
     const [components, setComponentsState] = useState([])
     const componentsRef = useRef([])
     const setComponents = data => {
@@ -14,14 +18,21 @@ export default function PostCreator() {
     }
 
     useEffect(() => {
-        // on load, add a default title section to state
-        const titleObj = {
-            sectionType: 'title',
-            title: 'Blog Post Title',
-            subtitle: 'Insert subtitle here'
+        // if user is creating a brand new blog post, add title to sections state
+        if (props.isNewPost) {
+            const titleObj = {
+                sectionType: 'title',
+                title: 'Blog Post Title',
+                subtitle: 'Insert subtitle here'
+            }
+    
+            setComponents([...componentsRef.current, titleObj])
+        } else {
+            // else id of post is in url, use it and make call to server for blog post data
+            API.getBlogPost(postId).then(post => {
+                setComponents(post.data.postSections)
+            })
         }
-
-        setComponents([...componentsRef.current, titleObj])
     }, [])
 
     const addSection = () => {
@@ -86,11 +97,28 @@ export default function PostCreator() {
 
     }
 
+    const previewSite = () => {
+
+    }
+
+    const publishSite = () => {
+        // if blog post is new, send data to server to create a new instance in the db
+        if (props.isNewPost) {
+            // send post data to server
+            API.createBlogPost({ creatorId: userId, postSections: componentsRef.current })
+        } else {
+            // else post is being updated so send updated data to server
+            API.updateBlogPost(postId, componentsRef.current)
+        }
+    }
+
     return (
         <div>
             <CreatorToolBox
                 addSection={addSection}
                 addImage={addImage}
+                previewSite={previewSite}
+                publish={publishSite}
             />
             <div className='content-responsive'>
                 {components.map((section, index) => {
