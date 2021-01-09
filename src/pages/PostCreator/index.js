@@ -17,6 +17,8 @@ export default function PostCreator(props) {
         setComponentsState(data)
     }
 
+    const [showSitePreview, setShowSitePreview] = useState(false)
+
     useEffect(() => {
         // if user is creating a brand new blog post, add title to sections state
         if (props.isNewPost) {
@@ -97,8 +99,17 @@ export default function PostCreator(props) {
 
     }
 
-    const previewSite = () => {
+    const toggleSitePreview = () => {
+        // if site preview is currently false, hide creator elements to show preview
+        if (!showSitePreview) {
+            document.querySelectorAll('.section-options-container').forEach(ele => ele.style.display = 'none')
+        } else {
+            // else show all creator elements
+            document.querySelectorAll('.section-options-container').forEach(ele => ele.style.display = 'block')
+        }
 
+        // update state to show/hide site preview
+        setShowSitePreview(!showSitePreview)
     }
 
     const publishSite = () => {
@@ -117,8 +128,9 @@ export default function PostCreator(props) {
             <CreatorToolBox
                 addSection={addSection}
                 addImage={addImage}
-                previewSite={previewSite}
+                previewSite={toggleSitePreview}
                 publish={publishSite}
+                showSitePreview={showSitePreview}
             />
             <div className='content-responsive'>
                 {components.map((section, index) => {
