@@ -20,21 +20,10 @@ export default function PostCreator(props) {
     const [showSitePreview, setShowSitePreview] = useState(false)
 
     useEffect(() => {
-        // if user is creating a brand new blog post, add title to sections state
-        if (props.isNewPost) {
-            const titleObj = {
-                sectionType: 'title',
-                title: 'Blog Post Title',
-                subtitle: 'Insert subtitle here'
-            }
-    
-            setComponents([...componentsRef.current, titleObj])
-        } else {
-            // else id of post is in url, use it and make call to server for blog post data
-            API.getBlogPost(postId).then(post => {
-                setComponents(post.data.postSections)
-            })
-        }
+        // using post id in url, make api call to get data on blog post
+        API.getBlogPost(postId).then(post => {
+            setComponents(post.data.postSections)
+        })
     }, [])
 
     const addSection = () => {
@@ -86,7 +75,7 @@ export default function PostCreator(props) {
         const name = event.target.getAttribute('data-name')
         const text = event.target.innerText
         const index = event.target.getAttribute('data-index')
-        
+
         // create new array to with updated value of input field
         const updatedArr = [...componentsRef.current]
         updatedArr[index][name] = text
@@ -136,14 +125,14 @@ export default function PostCreator(props) {
                 {components.map((section, index) => {
                     switch (section.sectionType) {
                         case 'title':
-                            return <BlogPostTitle 
+                            return <BlogPostTitle
                                 title={section.title}
                                 subtitle={section.subtitle}
                                 index={index}
                                 handleTextInputChange={handleTextInputChange}
                                 handleSectionMove={handleSectionMove}
                                 handleSectionDelete={handleSectionDelete}
-                                />
+                            />
                         case 'subSection':
                             return <BlogPostSection
                                 heading={section.heading}

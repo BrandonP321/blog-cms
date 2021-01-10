@@ -33,3 +33,18 @@
 .my-posts-container form button {
     margin-left: 5px;
 }
+
+.my-posts-container .posts {
+    height: 560px;
+    overflow-y: auto;
+    /* to avoid overflow cutting off box shadows, add padding but add negative margin to keep original size */
+    padding: 0px 10px;
+    margin: 0 -10px;
+}
+
+.my-posts-page-btns {
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px auto;
+}

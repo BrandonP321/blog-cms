@@ -10,6 +10,7 @@ export default function Dashboard() {
     const { userId } = useParams()
 
     const [myPosts, setMyPosts] = useState([])
+    const [postsToDisplay, setPostsToDisplay] = useState([])
     const [showModal, setShowModal] = useState(false)
     const [showPostDeleteModal, setShowPostDeleteModal] = useState(false)
     const [postToBeDeleted, setPostToBeDeleted] = useState(null)
@@ -19,6 +20,8 @@ export default function Dashboard() {
         description: ''
     })
     const [userIsMakingNewPost, setUserIsMakingNewPost] = useState(true)
+    // current page of list of blog posts starts counting at 0
+    const [currentBlogsListPage, setCurrentBlogsListPage] = useState(0)
 
     const modalSaveBtnCallback = useCallback(() => {
         if (userIsMakingNewPost) {
@@ -35,7 +38,7 @@ export default function Dashboard() {
                     }
                 ]
             }
-            
+
             // send post object to server
             API.createBlogPost(postObj).then(post => {
                 console.log(post.data)
@@ -45,7 +48,7 @@ export default function Dashboard() {
                 handleModalToggle()
             })
         } else {
-            
+
             // else make request to update existing server
             API.updateBlogPost(modalPostId, modalInput).then(() => {
                 handleModalToggle()
@@ -57,11 +60,21 @@ export default function Dashboard() {
         // make call to server to get all posts by the user
         API.getPostsByUser(userId)
             .then(({ data: posts }) => {
-                console.log(posts)
                 // add posts to state
                 setMyPosts(posts)
             })
     }, [])
+
+    useEffect(() => {
+        // when my posts are loaded in, select 5 posts based on currently display page to display to user
+        if (myPosts.length > 0) {
+            const endPostIndex = currentBlogsListPage * 5 + 4 < myPosts.length ? currentBlogsListPage * 5 + 4 : myPosts.length
+            console.log(currentBlogsListPage * 5 + 4, myPosts.length)
+            const postsArr = myPosts.slice(currentBlogsListPage * 5, endPostIndex + 1)
+            console.log('posts on page', postsArr)
+            setPostsToDisplay(postsArr)
+        }
+    }, [myPosts, currentBlogsListPage])
 
     const handleModalToggle = () => {
         setShowModal(!showModal)
@@ -77,6 +90,8 @@ export default function Dashboard() {
         // update values to be shown in modal
         setUserIsMakingNewPost(true)
         setModalInput({ title: '', description: '' })
+
+        handleModalToggle()
     }
 
     const showPostUpdateModal = (title, description, postId) => {
@@ -112,6 +127,16 @@ export default function Dashboard() {
         })
     }
 
+    const handlePrevBtnClick = () => {
+        // decrease current page by 1
+        setCurrentBlogsListPage(currentBlogsListPage - 1)
+    }
+
+    const handleNextBtnClick = () => {
+        // increase current page by 1
+        setCurrentBlogsListPage(currentBlogsListPage + 1)
+    }
+
     return (
         <>
             <div className='dashboard-wrapper'>
@@ -131,16 +156,28 @@ export default function Dashboard() {
                                 </form>
                             </div>
                         </div>
-                        {myPosts.map(post => {
-                            return <BlogPostBrief 
-                                title={post.title} 
-                                description={post.description} 
-                                id={post._id}
-                                userId={userId}
-                                showPostUpdateModal={showPostUpdateModal}
-                                handlePostDeleteAttempt={handlePostDeleteAttempt}
-                            />
-                        })}
+                        <div className='posts'>
+                            {postsToDisplay.map(post => {
+                                return <BlogPostBrief
+                                    title={post.title}
+                                    description={post.description}
+                                    id={post._id}
+                                    userId={userId}
+                                    showPostUpdateModal={showPostUpdateModal}
+                                    handlePostDeleteAttempt={handlePostDeleteAttempt}
+                                />
+                            })}
+                        </div>
+                        <div className='my-posts-page-btns'>
+                            {currentBlogsListPage !== 0 ?
+                                <button className='btn btn-light' onClick={handlePrevBtnClick}>Previous</button> :
+                                <button className='btn btn-light' disabled>Previous</button>
+                            }
+                            {currentBlogsListPage * 5 + 4 < myPosts.length ?
+                                <button className='btn btn-light' onClick={handleNextBtnClick}>Next</button> :
+                                <button className='btn btn-light' disabled>Next</button>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

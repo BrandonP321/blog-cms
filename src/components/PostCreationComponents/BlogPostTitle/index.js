@@ -5,11 +5,6 @@ import './index.css'
 export default function BlogPostTitle(props) {
     return (
         <div className='post-creator-section'>
-            <SectionOptions 
-               index={props.index} 
-               handleSectionMove={props.handleSectionMove} 
-               handleSectionDelete={props.handleSectionDelete}
-            />
             <h1 
                 className='post-title' 
                 onBlur={props.handleTextInputChange}
