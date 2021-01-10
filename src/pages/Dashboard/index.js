@@ -10,8 +10,10 @@ export default function Dashboard() {
     const { userId } = useParams()
 
     const [myPosts, setMyPosts] = useState([])
-    const [showModal, setShowModal] = useState(true)
-    const [modalPostId, setModalPostId] = useState()
+    const [showModal, setShowModal] = useState(false)
+    const [showPostDeleteModal, setShowPostDeleteModal] = useState(false)
+    const [postToBeDeleted, setPostToBeDeleted] = useState(null)
+    const [modalPostId, setModalPostId] = useState(null)
     const [modalInput, setModalInput] = useState({
         title: '',
         description: ''
@@ -65,6 +67,12 @@ export default function Dashboard() {
         setShowModal(!showModal)
     }
 
+    const hideDeletePostModal = () => {
+        setShowPostDeleteModal(false)
+
+        setPostToBeDeleted(null)
+    }
+
     const showNewPostModal = () => {
         // update values to be shown in modal
         setUserIsMakingNewPost(true)
@@ -87,6 +95,21 @@ export default function Dashboard() {
 
         // update state with new value
         setModalInput({ ...modalInput, [name]: value })
+    }
+
+    const handlePostDeleteAttempt = postId => {
+        // update state with id of post to be deleted
+        setPostToBeDeleted(postId)
+
+        // pop up modal to confirm user wants to delete blog post
+        setShowPostDeleteModal(true)
+    }
+
+    const handlePostDelete = () => {
+        console.log(postToBeDeleted)
+        API.deleteBlogPost(postToBeDeleted).then(() => {
+            hideDeletePostModal()
+        })
     }
 
     return (
@@ -113,7 +136,9 @@ export default function Dashboard() {
                                 title={post.title} 
                                 description={post.description} 
                                 id={post._id}
+                                userId={userId}
                                 showPostUpdateModal={showPostUpdateModal}
+                                handlePostDeleteAttempt={handlePostDeleteAttempt}
                             />
                         })}
                     </div>
@@ -141,6 +166,23 @@ export default function Dashboard() {
                     </Button>
                     <Button variant="primary" onClick={modalSaveBtnCallback}>
                         {userIsMakingNewPost ? 'Create Post' : 'Save Changes'}
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal show={showPostDeleteModal} onHide={hideDeletePostModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Blog Post Details</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Are you sure you want to delete this blog post?
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="danger" onClick={handlePostDelete}>
+                        Delete
+                    </Button>
+                    <Button variant="primary" onClick={hideDeletePostModal}>
+                        Cancel
                     </Button>
                 </Modal.Footer>
             </Modal>

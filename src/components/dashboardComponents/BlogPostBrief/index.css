@@ -15,7 +15,8 @@
 }
 
 .my-post-details {
-    width: calc(100% - 220px)
+    width: calc(100% - 220px);
+    font-size: 1.2rem;
 }
 
 .my-post-options button {

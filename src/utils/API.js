@@ -13,6 +13,9 @@ export default {
     updateBlogPost: function(id, postObj) {
         return axios.put('http://localhost:8000/api/post/update/' + id, postObj)
     },
+    deleteBlogPost: function(id) {
+        return axios.delete('http://localhost:8000/api/post/delete/' + id)
+    },
     login: function(userObj) {
         return axios.post('http://localhost:8000/api/user/login', userObj)
     },
