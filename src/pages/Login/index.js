@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import LoginForm from '../../components/loginComponents/LoginForm'
 import SignUpForm from '../../components/loginComponents/SignUpForm'
+import API from '../../utils/API'
 import './index.css'
 
 export default function Login(props) {
@@ -53,11 +54,25 @@ export default function Login(props) {
     }
 
     const handleLoginAttempt = (event) => {
-
+        event.preventDefault();
+        console.log(loginFormInput)
+        // send request to server to attempt login
+        API.login(loginFormInput)
     }
 
     const handleSignUpAttempt = (event) => {
+        event.preventDefault();
 
+        const { name, email, password } = signUpFormInput
+
+        const userObj = {
+            name: name,
+            email: email,
+            password: password
+        }
+
+        // send request to server to create account
+        API.createNewAccount(userObj)
     }
 
     return (

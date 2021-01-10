@@ -11,12 +11,12 @@ export default function LoginForm(props) {
             <form onSubmit={handleLoginAttempt}>
                 <div class="form-group">
                     <label for="login-email-input">Email address</label>
-                    <input type="email" class="form-control" id="login-email-input" onChange={handleLoginTextInputChange} required />
+                    <input type="email" class="form-control" id="login-email-input" name='email' onChange={handleLoginTextInputChange} required />
                     {/* <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> */}
                 </div>
                 <div class="form-group">
                     <label for="login-password-input">Password</label>
-                    <input type="password" class="form-control" id="login-password-input" onChange={handleLoginTextInputChange} required />
+                    <input type="password" class="form-control" id="login-password-input" name='password' onChange={handleLoginTextInputChange} required />
                     {/* <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> */}
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>

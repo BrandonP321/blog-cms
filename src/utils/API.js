@@ -9,5 +9,11 @@ export default {
     },
     updateBlogPost: function(id, postObj) {
         return axios.put('http://localhost:8000/api/post/update/' + id, postObj)
+    },
+    login: function(userObj) {
+        return axios.post('http://localhost:8000/api/user/login', userObj)
+    },
+    createNewAccount: function(userObj) {
+        return axios.post('http://localhost:8000/api/user/create', userObj)
     }
 }
