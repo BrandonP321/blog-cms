@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './App.css';
 import PostCreator from './pages/PostCreator'
 import BlogPost from './pages/BlogPost'
+import Login from './pages/Login'
 
 function App() {
   return (
@@ -13,7 +14,10 @@ function App() {
 
           </Route>
           <Route exact path='/login'>
-
+            <Login isMakingNewAccount={false} />
+          </Route>
+          <Route exact path='/signup'>
+            <Login isMakingNewAccount={true} />
           </Route>
           {/* <Route exact path='/dashboard/:user'>
 

@@ -1,0 +1,13 @@
+.signup-form-container {
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.signup-form-container h1 {
+    text-align: center;
+}
+
+.signup-form-container p {
+    text-align: center;
+}

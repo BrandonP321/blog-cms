@@ -1,0 +1,13 @@
+.login-form-container {
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.login-form-container h1 {
+    text-align: center;
+}
+
+.login-form-container p {
+    text-align: center;
+}

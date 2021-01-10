@@ -21,6 +21,15 @@
     transition: all .2s;
 }
 
+.tools button.active {
+    background-color: #727272;
+    color: white;
+}
+
+.tools button.active:hover {
+    background-color: #727272;
+}
+
 .tools button:hover {
     background-color: #cccccc;
 }
