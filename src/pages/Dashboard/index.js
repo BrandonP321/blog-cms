@@ -43,7 +43,11 @@ export default function Dashboard() {
                 handleModalToggle()
             })
         } else {
+            
             // else make request to update existing server
+            API.updateBlogPost(modalPostId, modalInput).then(() => {
+                handleModalToggle()
+            })
         }
     }, [userIsMakingNewPost, modalInput, modalPostId])
 
@@ -67,10 +71,13 @@ export default function Dashboard() {
         setModalInput({ title: '', description: '' })
     }
 
-    const showPostUpdateModal = () => {
+    const showPostUpdateModal = (title, description, postId) => {
         // update values to be shown in modal
         setUserIsMakingNewPost(false)
-        // setModalInput({ title: })
+        setModalInput({ title: title, description: description })
+        setModalPostId(postId)
+
+        setShowModal(!showModal)
     }
 
     const handleModalInputChange = (event) => {
@@ -101,7 +108,14 @@ export default function Dashboard() {
                                 </form>
                             </div>
                         </div>
-                        {/* iterate over posts here */}
+                        {myPosts.map(post => {
+                            return <BlogPostBrief 
+                                title={post.title} 
+                                description={post.description} 
+                                id={post._id}
+                                showPostUpdateModal={showPostUpdateModal}
+                            />
+                        })}
                     </div>
                 </div>
             </div>
