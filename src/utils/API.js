@@ -4,6 +4,9 @@ export default {
     getBlogPost: function(id) {
         return axios.get('http://localhost:8000/api/post/' + id)
     },
+    getPostsByUser: function(userId) {
+        return axios.get('http://localhost:8000/api/user/' + userId + '/post/all')
+    },
     createBlogPost: function(postObj) {
         return axios.post('http://localhost:8000/api/post/create', postObj)
     },

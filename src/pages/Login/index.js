@@ -55,9 +55,21 @@ export default function Login(props) {
 
     const handleLoginAttempt = (event) => {
         event.preventDefault();
-        console.log(loginFormInput)
+
         // send request to server to attempt login
         API.login(loginFormInput)
+            .then(({ data: user }) => {
+                console.log(user)
+                // redirect to user's dashboard
+                window.location.href = '/dashboard/user/' + user._id
+            })
+            .catch(err => {
+                switch(err.response.status) {
+                    case 401:
+                        // email or password were incorrect
+                        break;
+                }
+            })
     }
 
     const handleSignUpAttempt = (event) => {
@@ -73,6 +85,16 @@ export default function Login(props) {
 
         // send request to server to create account
         API.createNewAccount(userObj)
+            .then(user => {
+
+            })
+            .catch(err => {
+                switch(err.response.status) {
+                    case 409:
+                        // user with same email address alreay exists
+                        break;
+                }
+            })
     }
 
     return (

@@ -1,0 +1,35 @@
+.dashboard-wrapper h1 {
+    text-align: center;
+}
+
+.dashboard-content-wrapper {
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.my-posts-container {
+    width: 65%;
+    /* background-color: salmon; */
+}
+
+.my-posts-container h2 {
+    text-align: center;
+}
+
+.my-posts-container .search-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.my-posts-container form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.my-posts-container form button {
+    margin-left: 5px;
+}

@@ -4,6 +4,7 @@ import './App.css';
 import PostCreator from './pages/PostCreator'
 import BlogPost from './pages/BlogPost'
 import Login from './pages/Login'
+import Dashboard from './pages/Dashboard'
 
 function App() {
   return (
@@ -19,9 +20,9 @@ function App() {
           <Route exact path='/signup'>
             <Login isMakingNewAccount={true} />
           </Route>
-          {/* <Route exact path='/dashboard/:user'>
-
-          </Route> */}
+          <Route exact path='/dashboard/user/:userId'>
+            <Dashboard />
+          </Route>
           <Route exact path='/user/:userId/post/create'>
             <PostCreator isNewPost={true} />
           </Route>
