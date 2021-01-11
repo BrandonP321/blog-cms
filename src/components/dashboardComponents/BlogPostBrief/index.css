@@ -2,16 +2,24 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: 100px;
+    /* height: 100px; */
+    max-height: 100px;
+    min-height: 100px;
     box-shadow: 0px 0px 8px -1px rgba(0, 0, 0, .35);
     border-radius: 10px;
     margin-top: 10px;
     padding: 10px;
-    transition: height 1s;
+    overflow: hidden;
+    transition: max-height 1s;
 }
 
 .my-post-brief.expanded {
-    height: auto;
+    /* as long as max-height is larger than height of brief ele, height will transition to auto height */
+    max-height: 50vh;
+}
+
+.my-post-description {
+    margin-bottom: 0;
 }
 
 .my-post-details {
@@ -19,6 +27,16 @@
     font-size: 1.2rem;
 }
 
+.my-post-options {
+    position: relative;
+}
+
 .my-post-options button {
     margin-left: 5px;
+}
+
+.my-post-options a {
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
