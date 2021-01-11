@@ -48,3 +48,9 @@
     justify-content: space-between;
     margin: 10px auto;
 }
+
+@media screen and (max-width: 1200px) {
+    .my-posts-container {
+        width: 100%;
+    }
+}

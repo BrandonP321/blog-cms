@@ -18,3 +18,28 @@
     margin: 0;
     font-size: 1.1rem;
 }
+
+@media screen and (max-width: 1200px) {
+    .profile-container {
+        width: 100%;
+    }
+
+    .profile-flex-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .profile-info-group {
+        width: 100%;
+    }
+
+    .profile-info-group.name, .profile-info-group.email {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .profile-info-group.name, .profile-info-group.email {
+        width: 100%;
+    }
+}
