@@ -58,10 +58,14 @@ export default function Login(props) {
 
         // send request to server to attempt login
         API.login(loginFormInput)
-            .then(({ data: user }) => {
-                console.log(user)
+            .then(response => {
+                const token = response.headers['auth-token']
+                const userId = response.data
+                // store token in local storage
+                localStorage.setItem('token', token)
+
                 // redirect to user's dashboard
-                window.location.href = '/dashboard/user/' + user._id
+                window.location.href = '/dashboard/user/' + userId
             })
             .catch(err => {
                 switch(err.response.status) {
@@ -85,8 +89,8 @@ export default function Login(props) {
 
         // send request to server to create account
         API.createNewAccount(userObj)
-            .then(user => {
-
+            .then(response => {
+                console.log(response)
             })
             .catch(err => {
                 switch(err.response.status) {

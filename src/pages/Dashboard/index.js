@@ -140,11 +140,11 @@ export default function Dashboard() {
     return (
         <>
             <div className='dashboard-wrapper'>
-                <h1>My Dashboard</h1>
+                <h1 className='text-white'>My Dashboard</h1>
                 <div className='dashboard-content-wrapper'>
                     <ProfileOverview />
                     <div className='my-posts-container'>
-                        <h2>My Posts</h2>
+                        <h2 className='text-white'>My Posts</h2>
                         <div className='search-bar'>
                             <div className='flex-items-left'>
                                 <button className='new-post-btn btn btn-primary' onClick={showNewPostModal}>Create New Post</button>

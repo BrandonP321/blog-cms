@@ -22,6 +22,7 @@ function App() {
             <Login isMakingNewAccount={true} />
           </Route>
           <Route exact path='/dashboard/user/:userId'>
+            <div className='bg bg-dark'></div>
             <Dashboard />
           </Route>
           <Route exact path='/user/:userId/post/update/:postId'>
