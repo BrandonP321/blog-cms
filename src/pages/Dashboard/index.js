@@ -150,10 +150,7 @@ export default function Dashboard() {
                                 <button className='new-post-btn btn btn-primary' onClick={showNewPostModal}>Create New Post</button>
                             </div>
                             <div className='flex-items-right'>
-                                <form>
-                                    <input className='search-input form-control' type='text' placeholder='Search' />
-                                    <button type='submit' className='btn btn-primary'>Search</button>
-                                </form>
+                                <button className='btn btn-primary'>Sort</button>
                             </div>
                         </div>
                         <div className='posts'>

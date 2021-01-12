@@ -5,6 +5,7 @@ import PostCreator from './pages/PostCreator'
 import BlogPost from './pages/BlogPost'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
+import Home from './pages/Home'
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <Router >
         <Switch>
           <Route exact path='/'>
-
+            <Home />
           </Route>
           <Route exact path='/login'>
             <Login isMakingNewAccount={false} />

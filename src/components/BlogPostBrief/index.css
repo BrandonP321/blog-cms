@@ -1,0 +1,28 @@
+.home-post-brief {
+    position: relative;
+    box-shadow: 0px 4px 8px #989898;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    height: 110px;
+    overflow-y: hidden;
+    transition: height 1s;
+}
+
+.home-post-brief h3 {
+    display: inline-block;
+}
+
+.home-post-brief h3:hover {
+    cursor: pointer;
+}
+
+.home-post-brief a {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+.home-post-brief .description {
+    width: calc(100% - 50px);
+}
