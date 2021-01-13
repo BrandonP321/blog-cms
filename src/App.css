@@ -7,6 +7,10 @@
     z-index: -1;
 }
 
+.content-header-shift {
+    margin-top: 70px;
+}
+
 .content-responsive {
     width: min(1200px, 90%);
     margin: 0 auto;

@@ -24,5 +24,8 @@ export default {
     },
     createNewAccount: function(userObj) {
         return axios.post('http://localhost:8000/api/user/create', userObj)
+    },
+    validateToken: function(token) {
+        return axios.get('http://localhost:8000/api/auth/token', { 'headers': { 'auth-token': `${token}`}})
     }
 }

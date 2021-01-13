@@ -6,6 +6,7 @@
     margin-bottom: 10px;
     height: 110px;
     overflow-y: hidden;
+    background-color: white;
     transition: height 1s;
 }
 

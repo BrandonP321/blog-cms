@@ -1,0 +1,85 @@
+header {
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    box-shadow: 0px -5px 11px black;
+    z-index: 50000;
+}
+
+.header-items-left, .header-items-right i {
+    font-size: 27px;
+}
+
+.header-logo {
+    color: black;
+}
+
+.header-logo:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.header-items-right {
+    position: relative;
+}
+
+.header-items-right i {
+    position: relative;
+    top: 7px;
+    right: 5px;
+}
+
+.header-items-right i:hover {
+    cursor: pointer;
+}
+
+.header-user-pop-up {
+    position: absolute;
+    background-color: white;
+    right: -300px;
+    opacity: 0;
+    z-index:30000;
+    top: 40px;
+    width: 200px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 7px #b7b7b7;
+    transition: opacity .7s;
+}
+
+.header-user-pop-up.active {
+    right: 0;
+    opacity: 1;
+}
+
+.header-user-pop-up .login-btn, .header-user-pop-up .signup-btn {
+    width: 47%;
+}
+
+.header-user-pop-up .dashboard-link {
+    display: block;
+    padding: 5px 0;
+    border-top: 1px solid #b1b1b1;
+    border-bottom: 1px solid #b1b1b1;
+    margin-bottom: 5px;
+    color: black;
+}
+
+.header-user-pop-up .dashboard-link:hover {
+    color: black;
+}
+
+.header-user-pop-up .flex-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-user-pop-up .user-name {
+    margin: 0;
+    margin-bottom: 5px;
+}

@@ -62,12 +62,12 @@ export default function Home() {
             </div>
             <div className='home-posts-pages-btns'>
                 {postsDisplayedPage !== 0 ?
-                    <button className='btn' onClick={blogListPageDown}>Prev</button> :
-                    <button className='btn' disabled>Prev</button>
+                    <button className='btn btn-light' onClick={blogListPageDown}>Prev</button> :
+                    <button className='btn btn-light' disabled>Prev</button>
                 }
                 {postsDisplayedPage * 5 + 4 < allPosts.length ?
-                    <button className='btn' onClick={blogListPageUp}>Next</button> :
-                    <button className='btn' disabled>Next</button>
+                    <button className='btn btn-light' onClick={blogListPageUp}>Next</button> :
+                    <button className='btn btn-light' disabled>Next</button>
                 }
             </div>
         </>
