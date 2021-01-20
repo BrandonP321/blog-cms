@@ -84,8 +84,12 @@ export default function PostCreator(props) {
         componentsRef.current = updatedArr
     }
 
-    const handleImageChange = (event) => {
+    const updateSectionImage = (img, index) => {
+        // update img of section at given index
+        const newSectionsArr = [...componentsRef.current]
+        newSectionsArr[index].url = img
 
+        setComponents(newSectionsArr)
     }
 
     const toggleSitePreview = () => {
@@ -101,15 +105,31 @@ export default function PostCreator(props) {
         setShowSitePreview(!showSitePreview)
     }
 
-    const publishSite = () => {
-        // if blog post is new, send data to server to create a new instance in the db
-        if (props.isNewPost) {
-            // send post data to server
-            API.createBlogPost({ creatorId: userId, postSections: componentsRef.current })
-        } else {
-            // else post is being updated so send updated data to server
-            API.updateBlogPost(postId, componentsRef.current)
-        }
+    const publishSite = async () => {
+        // for each section that contains an image, upload the image to cloudinary and replace temp url with returned url
+        Promise.all(componentsRef.current.map(async (section, index) => {
+            if (section.sectionType === 'image') {
+                // const test = await API.updateCloudinaryImage(section.url)
+                // console.log(test)
+                const imgData = {
+                    file: section.url,
+                    upload_preset: 'oatstti0'
+                }
+
+                const imgUploadRequest = await API.updateCloudinaryImage(imgData)
+
+                const newUrl = imgUploadRequest.data.url
+
+                console.log({ ...section, url: newUrl })
+
+                return { ...section, url: newUrl }
+            } else {
+                return section
+            }
+        })).then((response) => {
+            // returned response is array of sections with new cloudinary image urls, send to server
+            API.updateBlogPost(postId, { postSections: response })
+        })
     }
 
     return (
@@ -149,6 +169,7 @@ export default function PostCreator(props) {
                                 index={index}
                                 handleSectionMove={handleSectionMove}
                                 handleSectionDelete={handleSectionDelete}
+                                updateSectionImage={updateSectionImage}
                             />
                     }
                 })}

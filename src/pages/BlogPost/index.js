@@ -1,46 +1,48 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import BlogPostSection from '../../components/BlogPostSection'
 import BlogPostImage from '../../components/BlogPostImage'
 import BlogPostTitle from '../../components/BlogPostTitle'
 import './index.css'
+import { useParams } from 'react-router-dom'
+import API from '../../utils/API'
 
 export default function BlogPost() {
+    const { id } = useParams();
+
+    const [sections, setSections] = useState([])
+
+    useEffect(() => {
+        // get blog post data from server
+        API.getBlogPost(id).then(response => {
+            setSections(response.data.postSections)
+        })
+    }, [])
+
     return (
         <div>
             <div className='content-responsive'>
-                <BlogPostTitle 
-                    title='This is some title'
-                    subtitle='This is an optional subtitle for this post'
-                />
-                <BlogPostImage src='https://via.placeholder.com/1920x1080' alt='hero' />
-                <BlogPostSection
-                    heading='This is something'
-                    text='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam venenatis augue vitae magna placerat,
-                    sit amet efficitur purus consequat. Etiam nisi urna, varius vehicula felis vel, lobortis pretium orci.
-                    Aliquam et dui sagittis mauris fermentum placerat. Nunc pulvinar nisl vitae ornare ultrices. Quisque
-                    tristique, sem quis convallis dictum, orci diam vulputate ipsum, sed scelerisque leo est vel ex. Fusce
-                    euismod dui nisi, a imperdiet justo eleifend commodo. Nunc convallis felis eu metus mollis pellentesque.
-                    Vivamus gravida convallis odio, a tincidunt eros accumsan eu.'
-                />
-                <BlogPostSection
-                    heading='This is something'
-                    text='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam venenatis augue vitae magna placerat,
-                    sit amet efficitur purus consequat. Etiam nisi urna, varius vehicula felis vel, lobortis pretium orci.
-                    Aliquam et dui sagittis mauris fermentum placerat. Nunc pulvinar nisl vitae ornare ultrices. Quisque
-                    tristique, sem quis convallis dictum, orci diam vulputate ipsum, sed scelerisque leo est vel ex. Fusce
-                    euismod dui nisi, a imperdiet justo eleifend commodo. Nunc convallis felis eu metus mollis pellentesque.
-                    Vivamus gravida convallis odio, a tincidunt eros accumsan eu.'
-                />
-                <BlogPostImage src='https://via.placeholder.com/1920x1080' alt='hello there' />
-                <BlogPostSection
-                    heading='This is something'
-                    text='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam venenatis augue vitae magna placerat,
-                    sit amet efficitur purus consequat. Etiam nisi urna, varius vehicula felis vel, lobortis pretium orci.
-                    Aliquam et dui sagittis mauris fermentum placerat. Nunc pulvinar nisl vitae ornare ultrices. Quisque
-                    tristique, sem quis convallis dictum, orci diam vulputate ipsum, sed scelerisque leo est vel ex. Fusce
-                    euismod dui nisi, a imperdiet justo eleifend commodo. Nunc convallis felis eu metus mollis pellentesque.
-                    Vivamus gravida convallis odio, a tincidunt eros accumsan eu.'
-                />
+                {sections.map((section, index) => {
+                    switch (section.sectionType) {
+                        case 'title':
+                            return <BlogPostTitle
+                                title={section.title}
+                                subtitle={section.subtitle}
+                                index={index}
+                            />
+                        case 'subSection':
+                            return <BlogPostSection
+                                heading={section.heading}
+                                text={section.text}
+                                index={index}
+                            />
+                        case 'image':
+                            return <BlogPostImage
+                                url={section.url}
+                                alt={section.alt}
+                                index={index}
+                            />
+                    }
+                })}
             </div>
         </div>
     )

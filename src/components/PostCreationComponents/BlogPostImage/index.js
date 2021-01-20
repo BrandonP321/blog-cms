@@ -10,6 +10,7 @@ export default function BlogPostImage(props) {
                 index={props.index} 
                 handleSectionMove={props.handleSectionMove} 
                 handleSectionDelete={props.handleSectionDelete}
+                updateSectionImage={props.updateSectionImage}
             />
             <img className='post-image' src={props.url || 'https://via.placeholder.com/1920x1080'} alt={props.alt} />
         </div>

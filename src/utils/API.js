@@ -27,5 +27,8 @@ export default {
     },
     validateToken: function(token) {
         return axios.get('http://localhost:8000/api/auth/token', { 'headers': { 'auth-token': `${token}`}})
+    },
+    updateCloudinaryImage: function(img) {
+        return axios.post('https://api.cloudinary.com/v1_1/brandonp321/image/upload', img)
     }
 }
