@@ -41,10 +41,6 @@ export default function Home() {
     return (
         <>
             <div className='home-search-bar'>
-                <form>
-                    <input className='search-input form-control' placeholder='Search' />
-                    <button className='btn btn-primary'>Search</button>
-                </form>
                 <DropdownButton id="dropdown-basic-button" title="Sort">
                     <Dropdown.Item as='button'>Most Recent</Dropdown.Item>
                     <Dropdown.Item as='button'>None</Dropdown.Item>

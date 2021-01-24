@@ -5,6 +5,7 @@
     width: 200px;
     border: 1px solid #727272;
     border-radius: 5px;
+    z-index: 10000;
 }
 
 .tools {
@@ -45,5 +46,5 @@
     padding-bottom: 7px;
     background-color: #007bff;
     color: white;
-    cursor: grab;
+    cursor: all-scroll;
 }

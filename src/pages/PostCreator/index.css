@@ -1,3 +1,39 @@
+.loading-screen-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.795);
+    text-align: center;
+    color: white;
+    padding-top: 40vh;
+    z-index: 30000;
+}
+
+.loading-screen-overlay.active {
+    display: block;
+}
+
+.loading-screen-overlay i {
+    color: white;
+    margin-bottom: 10px;
+    font-size: 5rem;
+    line-height: 86px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+}
+
 .post-creator-section {
     position: relative;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

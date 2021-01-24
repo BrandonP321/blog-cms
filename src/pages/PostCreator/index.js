@@ -10,6 +10,8 @@ import './index.css'
 export default function PostCreator(props) {
     const { userId, postId } = useParams();
 
+    const [isPublishing, setIsPublishing] = useState(false)
+
     const [components, setComponentsState] = useState([])
     const componentsRef = useRef([])
     const setComponents = data => {
@@ -25,6 +27,15 @@ export default function PostCreator(props) {
             setComponents(post.data.postSections)
         })
     }, [])
+
+    useEffect(() => {
+        // if post is publishing, hide body overflow
+        if (isPublishing) {
+            document.body.style.overflowY = 'hidden'
+        } else {
+            document.body.style.overflowY = 'auto'
+        }
+    }, [isPublishing])
 
     const addSection = () => {
         // add object to state with properties for a section with a heading and text
@@ -106,11 +117,12 @@ export default function PostCreator(props) {
     }
 
     const publishSite = async () => {
+        // update state
+        setIsPublishing(true)
+
         // for each section that contains an image, upload the image to cloudinary and replace temp url with returned url
         Promise.all(componentsRef.current.map(async (section, index) => {
             if (section.sectionType === 'image') {
-                // const test = await API.updateCloudinaryImage(section.url)
-                // console.log(test)
                 const imgData = {
                     file: section.url,
                     upload_preset: 'oatstti0'
@@ -120,13 +132,14 @@ export default function PostCreator(props) {
 
                 const newUrl = imgUploadRequest.data.url
 
-                console.log({ ...section, url: newUrl })
-
                 return { ...section, url: newUrl }
             } else {
                 return section
             }
         })).then((response) => {
+            // update state
+            setIsPublishing(false)
+
             // returned response is array of sections with new cloudinary image urls, send to server
             API.updateBlogPost(postId, { postSections: response })
         })
@@ -134,6 +147,10 @@ export default function PostCreator(props) {
 
     return (
         <div>
+            <div className={`loading-screen-overlay${isPublishing ? ' active' : ''}`}>
+                <i className='fad fa-spinner-third'></i>
+                <h2>Publishing...</h2>
+            </div>
             <CreatorToolBox
                 addSection={addSection}
                 addImage={addImage}
