@@ -24,23 +24,26 @@ export default function BlogPost() {
                 {sections.map((section, index) => {
                     switch (section.sectionType) {
                         case 'title':
-                            return <BlogPostTitle
-                                title={section.title}
-                                subtitle={section.subtitle}
-                                index={index}
-                            />
+                            return <div className='post-section-wrapper'>
+                                <BlogPostTitle
+                                    title={section.title}
+                                    subtitle={section.subtitle}
+                                    index={index}
+                                /></div>
                         case 'subSection':
-                            return <BlogPostSection
-                                heading={section.heading}
-                                text={section.text}
-                                index={index}
-                            />
+                            return <div className='post-section-wrapper'>
+                                <BlogPostSection
+                                    heading={section.heading}
+                                    text={section.text}
+                                    index={index}
+                                /></div>
                         case 'image':
-                            return <BlogPostImage
-                                url={section.url}
-                                alt={section.alt}
-                                index={index}
-                            />
+                            return <div className='post-section-wrapper'>
+                                <BlogPostImage
+                                    url={section.url}
+                                    alt={section.alt}
+                                    index={index}
+                                /></div>
                     }
                 })}
             </div>

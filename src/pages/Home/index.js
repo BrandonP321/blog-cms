@@ -40,6 +40,13 @@ export default function Home() {
 
     return (
         <>
+            <div className='hero'>
+                <div className='text-wrapper'>
+                    <h3>Welcome to</h3>
+                    <h1>Instablog</h1>
+                    <p></p>
+                </div>
+            </div>
             <div className='home-search-bar'>
                 <DropdownButton id="dropdown-basic-button" title="Sort">
                     <Dropdown.Item as='button'>Most Recent</Dropdown.Item>

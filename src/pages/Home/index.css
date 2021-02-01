@@ -1,3 +1,23 @@
+.hero {
+    height: 20vh;
+    padding-top: 5vh;
+}
+
+.hero .text-wrapper {
+    color: white;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.hero .text-wrapper h1 {
+    font-size: 5rem;
+    line-height: 50px;
+}
+
+.hero .text-wrapper h3 {
+    font-size: 1.5rem;
+}
+
 .home-blog-posts {
     width: 95%;
     max-width: 900px;
@@ -34,4 +54,26 @@
 
 .home-search-bar form button {
     margin-left: 5px;
+}
+
+@media screen and (max-width: 950px) {
+    .hero {
+        padding-top: 0vh;
+    }
+
+    @media (max-height: 800px) {
+
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .hero .text-wrapper h1 {
+        font-size: 4.5rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .hero .text-wrapper h1 {
+        font-size: 4rem;
+    }
 }
