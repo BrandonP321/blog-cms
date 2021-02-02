@@ -29,7 +29,7 @@ export default function Dashboard() {
             const postObj = {
                 title: modalInput.title,
                 description: modalInput.description,
-                creatorId: userId,
+                creator: userId,
                 postSections: [
                     {
                         sectionType: 'title',

@@ -24,7 +24,6 @@ export default function Home() {
     useEffect(() => {
         // when all posts state is updated, update posts to be displayed
         if (sortedPosts.length > 0) {
-            console.log('updated sort')
             const endPostIndex = postsDisplayedPage * 5 + 4 < sortedPosts.length ? postsDisplayedPage * 5 + 4 : sortedPosts.length
             const postsArr = sortedPosts.slice(postsDisplayedPage * 5, endPostIndex + 1)
             setDisplayedPosts(postsArr)
@@ -37,12 +36,10 @@ export default function Home() {
         switch (sort) {
             case 'recent':
                 var newSortedPosts = [...allPosts].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                console.log(newSortedPosts)
                 setSortedPosts(newSortedPosts)
                 break;
             case 'oldest':
                 var newSortedPosts = [...allPosts].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
-                console.log(newSortedPosts)
                 setSortedPosts(newSortedPosts)
                 break;
             case 'none':
@@ -87,6 +84,8 @@ export default function Home() {
                         title={post.title}
                         description={post.description}
                         id={post._id}
+                        createdAt={post.createdAt}
+                        creator={post.creator}
                     />
                 })}
             </div>

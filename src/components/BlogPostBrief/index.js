@@ -29,6 +29,7 @@ export default function BlogPostBrief(props) {
     return (
         <div ref={briefEle} className='home-post-brief'>
             <h3 onClick={() => window.location.href='/post/' + props.id}>{props.title} <span className='creation-date'></span></h3>
+            <p className='creator'>{props.creator} {new Date(props.createdAt).toLocaleDateString()}</p>
             <p ref={descEle} className='description'>{props.description}</p>
             <a href='#' onClick={handleExpandToggle}>{isExpanded ? 'Less' : "More"}</a>
         </div>

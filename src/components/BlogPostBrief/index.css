@@ -12,6 +12,7 @@
 
 .home-post-brief h3 {
     display: inline-block;
+    margin-bottom: 0;
 }
 
 .home-post-brief h3:hover {
@@ -22,6 +23,11 @@
     position: absolute;
     right: 10px;
     bottom: 10px;
+}
+
+.home-post-brief .creator {
+    margin-bottom: 0;
+    font-size: .9rem;
 }
 
 .home-post-brief .description {
