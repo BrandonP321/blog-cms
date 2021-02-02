@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import './index.css'
 
 export default function BlogPostBrief(props) {
@@ -7,7 +8,7 @@ export default function BlogPostBrief(props) {
     return (
         <div className={isExpanded ? 'my-post-brief expanded' : 'my-post-brief'}>
             <div className='my-post-details'>
-                <a className='my-post-title' href={`/post/${props.id}`} target='_blank'><strong>{props.title}</strong></a>
+                <Link className='my-post-title' href={`/post/${props.id}`} target='_blank'><strong>{props.title}</strong></Link>
                 <p className='my-post-description'>{props.description}</p>
             </div>
             <div className='my-post-options'>

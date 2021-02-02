@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import LoginForm from '../../components/loginComponents/LoginForm'
 import SignUpForm from '../../components/loginComponents/SignUpForm'
 import API from '../../utils/API'
 import './index.css'
 
 export default function Login(props) {
+    let history = useHistory();
+
     const { isMakingNewAccount } = props
 
     // boolean to show login or sign up form
@@ -65,7 +68,7 @@ export default function Login(props) {
                 localStorage.setItem('token', token)
 
                 // redirect to user's dashboard
-                window.location.href = '/dashboard/user/' + userId
+                history.push('/dashboard/user/' + userId)
             })
             .catch(err => {
                 switch(err.response.status) {
@@ -94,7 +97,7 @@ export default function Login(props) {
                 const jwt = response.headers['auth-token']
                 localStorage.setItem('token', jwt)
 
-                window.location.href = `/dashboard/user/${response.data}`
+                history.push(`/dashboard/user/${response.data}`)
             })
             .catch(err => {
                 switch(err.response.status) {

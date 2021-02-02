@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory, useLocation, Link } from 'react-router-dom'
 import API from '../../utils/API'
 import './index.css'
 
 export default function Header() {
+    const location = useLocation();
+    let history = useHistory();
+
     const [loggedInUser, setLoggedInUser] = useState(null)
 
     const [showPopUp, setShowPopUp] = useState(false)
@@ -21,8 +25,13 @@ export default function Header() {
                     // if token was invalid, set user state to null
                     setLoggedInUser(null)
                 })
+        } else {
+            setLoggedInUser(false)
         }
-    }, [])
+
+        // hide pop up when page changes
+        setShowPopUp(false)
+    }, [location])
 
     const handlePopUpToggle = () => {
         setShowPopUp(!showPopUp)
@@ -31,26 +40,29 @@ export default function Header() {
     const handleLogout = () => {
         // remove jwt from local storage and redirect to home page
         localStorage.removeItem('token')
-        window.location.href = '/'
+
+        // if current page is home page, refresh page
+        if (location.pathname === '/') history.go(0)
+        else history.push('/')
     }
 
     return (
         <header>
             <div className='header-items-left'>
-                <a href='/' className='header-logo'><i className='fad fa-comment-lines'></i> Instablog</a>
+                <Link to='/' className='header-logo'><i className='fad fa-comment-lines'></i> Instablog</Link>
             </div>
             <div className='header-items-right'>
                 <i className='fas fa-user' onClick={handlePopUpToggle}></i>
                 {loggedInUser ?
                     <div className={`header-user-pop-up${showPopUp ? ' active' : ''}`}>
                         <p className='user-name'>{loggedInUser.name}</p>
-                        <a className='dashboard-link' href={`dashboard/user/${loggedInUser.id}`}>My Dashboard</a>
+                        <Link className='dashboard-link' to={`dashboard/user/${loggedInUser.id}`}>My Dashboard</Link>
                         <button className='logout-btn btn btn-primary' onClick={handleLogout}>Log Out</button>
                     </div> :
                     <div className={`header-user-pop-up${showPopUp ? ' active' : ''}`}>
                         <div className='flex-wrapper'>
-                            <button className='login-btn btn btn-dark' onClick={() => window.location.href='/login'}>Log in</button>
-                            <button className='signup-btn btn btn-dark' onClick={() => window.location.href='/signup'}>Sign Up</button>
+                            <Link className='login-btn btn btn-dark' to='/login'>Log in</Link>
+                            <Link className='signup-btn btn btn-dark' to='/signup'>Sign Up</Link>
                         </div>
                     </div>
                 }
