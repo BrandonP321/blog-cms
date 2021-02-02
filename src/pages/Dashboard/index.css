@@ -22,7 +22,7 @@
 .my-posts-container .search-bar {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .my-posts-container form {

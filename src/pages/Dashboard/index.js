@@ -146,11 +146,8 @@ export default function Dashboard() {
                     <div className='my-posts-container'>
                         <h2 className='text-white'>My Posts</h2>
                         <div className='search-bar'>
-                            <div className='flex-items-left'>
-                                <button className='new-post-btn btn btn-primary' onClick={showNewPostModal}>Create New Post</button>
-                            </div>
                             <div className='flex-items-right'>
-                                <button className='btn btn-primary'>Sort</button>
+                                <button className='new-post-btn btn btn-primary' onClick={showNewPostModal}>Create New Post</button>
                             </div>
                         </div>
                         <div className='posts'>

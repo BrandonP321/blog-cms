@@ -28,6 +28,12 @@ export default function Header() {
         setShowPopUp(!showPopUp)
     }
 
+    const handleLogout = () => {
+        // remove jwt from local storage and redirect to home page
+        localStorage.removeItem('token')
+        window.location.href = '/'
+    }
+
     return (
         <header>
             <div className='header-items-left'>
@@ -39,7 +45,7 @@ export default function Header() {
                     <div className={`header-user-pop-up${showPopUp ? ' active' : ''}`}>
                         <p className='user-name'>{loggedInUser.name}</p>
                         <a className='dashboard-link' href={`dashboard/user/${loggedInUser.id}`}>My Dashboard</a>
-                        <button className='logout-btn btn btn-primary'>Log Out</button>
+                        <button className='logout-btn btn btn-primary' onClick={handleLogout}>Log Out</button>
                     </div> :
                     <div className={`header-user-pop-up${showPopUp ? ' active' : ''}`}>
                         <div className='flex-wrapper'>
