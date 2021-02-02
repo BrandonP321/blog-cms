@@ -90,7 +90,11 @@ export default function Login(props) {
         // send request to server to create account
         API.createNewAccount(userObj)
             .then(response => {
-                console.log(response)
+                // if successfully signed up, store jwt and redirect to dashboard
+                const jwt = response.headers['auth-token']
+                localStorage.setItem('token', jwt)
+
+                window.location.href = `/dashboard/user/${response.data}`
             })
             .catch(err => {
                 switch(err.response.status) {
