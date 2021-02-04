@@ -5,6 +5,8 @@ import API from '../../utils/API'
 import './index.css'
 
 export default function Home() {
+    const [isLoading, setIsLoading] = useState(true)
+
     const [allPosts, setAllPosts] = useState([])
     const [sortedPosts, setSortedPosts] = useState([])
     const [displayPosts, setDisplayedPosts] = useState([])
@@ -18,6 +20,8 @@ export default function Home() {
                 setAllPosts(posts)
                 // sorted posts state can also be set now since no sort option is set
                 setSortedPosts(posts)
+
+                setIsLoading(false)
             })
     }, [])
 
@@ -88,6 +92,9 @@ export default function Home() {
                         creator={post.creator}
                     />
                 })}
+                <div className={`loading-display${isLoading ? '' : ' hide'}`}>
+                    Loading Posts <i className='fad fa-spinner-third'></i>
+                </div>
             </div>
             <div className='home-posts-pages-btns'>
                 {postsDisplayedPage !== 0 ?

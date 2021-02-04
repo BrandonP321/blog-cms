@@ -31,14 +31,6 @@
     width: 150px;
 }
 
-.home-posts-pages-btns button {
-
-}
-
-.home-posts-pages-btns button:hover {
-    
-}
-
 .home-search-bar {
     display: flex;
     flex-wrap: wrap;
@@ -54,6 +46,21 @@
 
 .home-search-bar form button {
     margin-left: 5px;
+}
+
+.loading-display {
+    font-size: 3rem;
+    text-align: center;
+    color: white;
+}
+
+.loading-display.hide {
+    display: none;
+}
+
+.loading-display i {
+    animation: spin 2s linear infinite;
+    height: 44px;
 }
 
 @media screen and (max-width: 950px) {
@@ -72,8 +79,27 @@
     }
 }
 
+@media screen and (max-width: 500px) {
+    .loading-display {
+        font-size: 2rem;
+    }
+
+    .loading-display i {
+        height: 30px;
+    }
+}
+
 @media screen and (max-width: 400px) {
     .hero .text-wrapper h1 {
         font-size: 4rem;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
     }
 }

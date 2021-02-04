@@ -60,6 +60,7 @@ export default function Dashboard() {
         // make call to server to get all posts by the user
         API.getPostsByUser(userId)
             .then(({ data: posts }) => {
+                console.log(posts)
                 // add posts to state
                 setMyPosts(posts)
             })
@@ -71,7 +72,6 @@ export default function Dashboard() {
             const endPostIndex = currentBlogsListPage * 5 + 4 < myPosts.length ? currentBlogsListPage * 5 + 4 : myPosts.length
             console.log(currentBlogsListPage * 5 + 4, myPosts.length)
             const postsArr = myPosts.slice(currentBlogsListPage * 5, endPostIndex + 1)
-            console.log('posts on page', postsArr)
             setPostsToDisplay(postsArr)
         }
     }, [myPosts, currentBlogsListPage])
