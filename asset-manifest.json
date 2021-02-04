@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/blog-cms/static/css/main.3e0763c7.chunk.css",
+    "main.js": "/blog-cms/static/js/main.c9f0e0be.chunk.js",
+    "main.js.map": "/blog-cms/static/js/main.c9f0e0be.chunk.js.map",
+    "runtime-main.js": "/blog-cms/static/js/runtime-main.5dc63622.js",
+    "runtime-main.js.map": "/blog-cms/static/js/runtime-main.5dc63622.js.map",
+    "static/js/2.82a8e89b.chunk.js": "/blog-cms/static/js/2.82a8e89b.chunk.js",
+    "static/js/2.82a8e89b.chunk.js.map": "/blog-cms/static/js/2.82a8e89b.chunk.js.map",
+    "static/js/3.3be5ee9c.chunk.js": "/blog-cms/static/js/3.3be5ee9c.chunk.js",
+    "static/js/3.3be5ee9c.chunk.js.map": "/blog-cms/static/js/3.3be5ee9c.chunk.js.map",
+    "index.html": "/blog-cms/index.html",
+    "static/css/main.3e0763c7.chunk.css.map": "/blog-cms/static/css/main.3e0763c7.chunk.css.map",
+    "static/js/2.82a8e89b.chunk.js.LICENSE.txt": "/blog-cms/static/js/2.82a8e89b.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/blog-cms/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5dc63622.js",
+    "static/js/2.82a8e89b.chunk.js",
+    "static/css/main.3e0763c7.chunk.css",
+    "static/js/main.c9f0e0be.chunk.js"
+  ]
+}
