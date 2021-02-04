@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-// const APIENDPOINT = process.env.REACT_APP_APIENDPOINT
-const APIENDPOINT = 'http://localhost:8000'
+const APIENDPOINT = process.env.REACT_APP_APIENDPOINT
 
 export default {
     getBlogPost: function(id) {

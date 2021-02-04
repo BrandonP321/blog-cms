@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <div className='content-header-shift'>
-        <Router >
+        <Router basename='/blog-cms'>
           <Header />
           <Switch>
             <Route exact path='/'>
